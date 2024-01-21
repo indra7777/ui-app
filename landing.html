@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing</title>
+    <link rel="stylesheet" href="./public/css/landing.css">
+    <script src="./public/js/landing.js" defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+        <div class="header">
+        <img class="logo" src="./public/img/logo.jpg" alt="Your Logo">
+        <div class="rounded-container">
+            <a href="weare.html">We Are</a>
+            <a href="wedo.html">We Do</a>
+            <a href="We.html">We</a>
+        </div>
+        <div class="buttons-container">
+            <a href="#" onclick="openModal('loginModal')" class="login-button">Login</a>
+            <a href="#" onclick="openModal('signupModal')" class="signup-button">Signup</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <img src="./public/img/bg.jpg" alt="Main Image" class="main-image">
+        <div class="main-text">
+            <h2>Welcome to Our Website!</h2>
+            <p>Explore our amazing features and content. Join our community today!</p>
+        </div>
+    </div>
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('loginModal')">&times;</span>
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+        <div class="forgot-password">
+            <a href="#" onclick="openForgotPasswordModal()">Forgot Password?</a>
+        </div>
+        <button onclick="performLogin()">Login</button>
+    </div>
+</div>
+
+<div id="signupModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('signupModal')">&times;</span>
+        <label for="signupEmail">Enter Email:</label>
+        <input type="email" id="signupEmail" placeholder="Your email">
+        <label for="signupUsername">Enter Username:</label>
+        <input type="text" id="signupUsername" placeholder="Your username">
+        <label for="signupPassword">Create Password:</label>
+        <input type="password" id="signupPassword" placeholder="Your password" oninput="checkPasswordStrength()">
+        <div id="passwordStrength"></div>
+        <button onclick="performSignup()">Signup</button>
+    </div>
+</div>
+
+<div id="forgotPasswordModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('forgotPasswordModal')">&times;</span>
+        <label for="forgotUsername">Enter your username:</label>
+        <input type="text" id="forgotUsername" placeholder="Your username">
+        <button onclick="sendPasswordResetEmail()">Reset Password</button>
+    </div>
+</div>
+
+
+</body>
+</html>

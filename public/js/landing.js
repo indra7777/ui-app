@@ -16,7 +16,7 @@ function performLogin() {
     
     console.log('Login:', 'Username:', username, 'Password:', password);
 
-    fetch("http://localhost:3000/login", {
+    fetch(window.location.href + "/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json', 

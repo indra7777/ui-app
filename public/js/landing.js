@@ -16,7 +16,7 @@ function performLogin() {
     
     console.log('Login:', 'Username:', username, 'Password:', password);
 
-    fetch(window.location.href + "/login", {
+    fetch("http://52.172.26.128:3000/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json', 
@@ -36,7 +36,7 @@ function performLogin() {
         // Check for a successful login
         if (data === 'Login successful') {
             // Redirect to the "/dashboard" route
-            window.location.href = '/explore';
+            window.location.href = 'http://52.172.26.128:3000/explore';
         } else {
             // Handle other responses
             alert('Invalid credentials! Please try again.');

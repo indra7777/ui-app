@@ -9,13 +9,73 @@ function closeModal(modalId) {
 function performLogin() {
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
+    var data = {
+        username: username,
+        password: password
+    };
+    
     console.log('Login:', 'Username:', username, 'Password:', password);
+
+    fetch("http://localhost:3000/login", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify(data) 
+    })
+     .then(response => {
+        if (response.ok) {
+            return response.text();
+        } else {
+            throw new Error('Login failed');
+        }
+    })
+    .then(data => {
+        console.log('Server response:', data);
+
+        // Check for a successful login
+        if (data === 'Login successful') {
+            // Redirect to the "/dashboard" route
+            window.location.href = '/explore';
+        } else {
+            // Handle other responses
+            alert('Invalid credentials! Please try again.');
+        }
+
+        closeModal('loginModal');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle errors here
+    });
     closeModal('loginModal');
 }
 
 function performSignup() {
     var newUsername = document.getElementById('newUsername').value;
+    var email = document.getElementById('signupEmail').value;
     var newPassword = document.getElementById('newPassword').value;
+     var data = {
+        email:email,
+        username: username,
+        password: password
+    };
+    fetch(process.env.BASE_URL+"/signup", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify(data) 
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Server response:', data);
+        closeModal('loginModal');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle errors here
+    });
     console.log('Signup:', 'New Username:', newUsername, 'New Password:', newPassword);
     closeModal('signupModal');
 }

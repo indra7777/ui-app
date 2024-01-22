@@ -6,7 +6,7 @@ function closeModal(modalId) {
     document.getElementById(modalId).style.display = "none";
 }
 
-function performLogin() {
+async function performLogin() {
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
     var data = {
@@ -16,38 +16,15 @@ function performLogin() {
     
     console.log('Login:', 'Username:', username, 'Password:', password);
 
-    fetch("http://52.172.26.128:3000/login", {
+    await fetch(window.location.href + "/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json', 
         },
         body: JSON.stringify(data) 
     })
-     .then(response => {
-        if (response.ok) {
-            return response.text();
-        } else {
-            throw new Error('Login failed');
-        }
-    })
-    .then(data => {
-        console.log('Server response:', data);
 
-        // Check for a successful login
-        if (data === 'Login successful') {
-            // Redirect to the "/dashboard" route
-            window.location.href = 'http://52.172.26.128:3000/explore';
-        } else {
-            // Handle other responses
-            alert('Invalid credentials! Please try again.');
-        }
-
-        closeModal('loginModal');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        // Handle errors here
-    });
+    
     closeModal('loginModal');
 }
 

@@ -24,7 +24,16 @@ app.post('/login',(req,res)=>{
     return res.status(400).json({ error: 'Username and password are required' });
   }
     console.log(`username: ${username} & password: ${password}`);
-    res.status(200).send('Login successful')
+    res.status(200).render('explore')
+})
+app.post('/signup',(req,res)=>{
+    const {username,password,email}= req.body;
+
+  if (!username || !password || !email) {
+    return res.status(400).json({ error: 'Username and password are required' });
+  }
+    console.log(`username: ${username} & password: ${password}`);
+    res.status(200).render('explore')
 })
 app.listen(3000,()=>{
     console.log('Server is running on port 3000');

@@ -30,29 +30,34 @@
     </div>
 <div id="loginModal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeModal('loginModal')">&times;</span>
-        <label for="username">Username:</label>
-        <input type="text" id="username" placeholder="Enter your username">
-        <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Enter your password">
-        <div class="forgot-password">
-            <a href="#" onclick="openForgotPasswordModal()">Forgot Password?</a>
-        </div>
-        <button onclick="performLogin()">Login</button>
+        <form action="/login" method="post">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <label for="username">Username:</label>
+            <input name="username" type="text" id="username" placeholder="Enter your username">
+            <label for="password">Password:</label>
+            <input name="password" type="password" id="password" placeholder="Enter your password">
+            <div class="forgot-password">
+                <a href="#" onclick="openForgotPasswordModal()">Forgot Password?</a>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        
     </div>
 </div>
 
 <div id="signupModal" class="modal">
     <div class="modal-content">
+        <form action="/signup" method="post">
         <span class="close" onclick="closeModal('signupModal')">&times;</span>
         <label for="signupEmail">Enter Email:</label>
-        <input type="email" id="signupEmail" placeholder="Your email">
+        <input name="email" type="email" id="signupEmail" placeholder="Your email">
         <label for="signupUsername">Enter Username:</label>
-        <input type="text" id="signupUsername" placeholder="Your username">
+        <input name="username" type="text" id="signupUsername" placeholder="Your username">
         <label for="signupPassword">Create Password:</label>
-        <input type="password" id="signupPassword" placeholder="Your password" oninput="checkPasswordStrength()">
+        <input name="password" type="password" id="signupPassword" placeholder="Your password" oninput="checkPasswordStrength()">
         <div id="passwordStrength"></div>
-        <button onclick="performSignup()">Signup</button>
+        <button type="submit" >Signup</button>
+        </form>
     </div>
 </div>
 
